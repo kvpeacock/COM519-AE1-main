@@ -3,6 +3,8 @@ const express = require("express");
 require('dotenv').config();
 
 const specificationController = require("./controllers/specification");
+const manufacturerController = require("./controllers/manufacturer");
+const reviewController = require("./controllers/review");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -29,6 +31,12 @@ mongoose.connection.on("error", (err) => {
 
 app.get("/specifications", specificationController.list);
 app.get("/specifications/delete/:id", specificationController.delete);
+
+app.get("/manufacturers", manufacturerController.list);
+app.get("/manufacturers/delete/:id", manufacturerController.delete);
+
+app.get("/reviews", reviewController.list);
+app.get("/reviews/delete/:id", reviewController.delete);
 
 
 

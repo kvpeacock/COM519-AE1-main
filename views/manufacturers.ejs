@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Country</td>
+            <td>Founding Year</td>
+            <td>HQ</td>
+            <td>Type</td>
+            <td>Models</td>
+        </tr>
+    </thead>
+    <%  
+    manufacturers.forEach(manufacturer => {
+    %>
+    
+        <tr>
+            <td><%=manufacturer.name%></td>
+            <td><%=manufacturer.country%></td>
+            <td><%=manufacturer.founding_year%></td>
+            <td><%=manufacturer.hq%></td>
+            <td><%=manufacturer.type%></td>
+            <td><%=manufacturer.models%></td>
+            <td class="text-center"><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+            <a  href="/manufacturers/delete/<%= manufacturer.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+        </tr>
+    <%  
+        });
+    %>
+    </table>
+
+
+    
+</body>
+
+
+
+
+</html>

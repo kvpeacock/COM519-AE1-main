@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Score</td>
+
+        </tr>
+    </thead>
+    <%  
+    reviews.forEach(review => {
+    %>
+    
+        <tr>
+            <td><%=review.model%></td>
+            <td><%=review.review%></td>
+
+            <td class="text-center"><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+            <a  href="/reviews/delete/<%= review.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+        </tr>
+    <%  
+        });
+    %>
+    </table>
+
+
+    
+</body>
+
+
+
+
+</html>

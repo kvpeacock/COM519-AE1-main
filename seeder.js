@@ -23,6 +23,7 @@ async function main() {
         console.log(data);
         await db.collection("specifications").insertMany(JSON.parse(data));
 
+        //Creates manufacturer document
         const VehicleManufacturersRef = await db.collection("specifications").aggregate([
             {$match: {manufacturer: {$ne: null}}},
             {
@@ -50,6 +51,38 @@ async function main() {
 
         const manufacturers = await VehicleManufacturersRef.toArray();
         await db.collection("manufacturers").insertMany(manufacturers)
+
+
+
+        //Creates reviews document
+        const VehicleReviewsRef = await db.collection("specifications").aggregate([
+            {$match: {reviews: {$ne: null}}},
+            {
+                $group: {
+                    _id: "$reviews",
+                    model : { "$first" : "$model"},
+                    reviews: { "$first" : "$reviews"}
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    model: "$model",
+                    reviews: "$reviews",
+                    
+                },
+            },
+        ]);
+
+
+
+
+        const reviews = await VehicleReviewsRef.toArray();
+        console.info("Reviews:")
+        console.info(reviews);
+        await db.collection("reviews").insertMany(reviews)
+
+
 
 
 
