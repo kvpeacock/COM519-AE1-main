@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Vehicle Database</title>
+    <link href="/forms.css" rel="stylesheet" />
+  </head>
+<style>
+
+
+</style>
+ 
+<body>
+  <%- include('common/header'); -%>
+
+  <div class="container">
+    <h1 class="text-center">Add a new manufacturer</h1>
+      <div class="details">
+        <form method="POST" action="/create-manufacturer">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Enter Name"
+            />
+            <% if (errors['name']) { %>
+            <p style="color: red"><%= errors['name'].message %></p>
+            <% } %>
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              name="country"
+              placeholder="Enter Country"
+            />
+            <% if (errors['country']) { %>
+            <p style="color: red"><%= errors['country'].message %></p>
+            <% } %>
+          </div>
+
+          <div class="form-group">
+            <label for="year">Founding Year</label>
+            <input
+              type="number"
+              class="form-control"
+              id="year"
+              name="founding_year"
+              placeholder="Enter Founding Year"
+            />
+            <% if (errors['founding_year']) { %>
+            <p style="color: red"><%= errors['founding_year'].message %></p>
+            <% } %>
+          </div>
+
+          <div class="form-group">
+            <label for="HQ">Headquarters</label>
+            <input
+              type="text"
+              class="form-control"
+              id="HQ"
+              name="hq"
+              placeholder="Enter HQ Location"
+            />
+            <% if (errors['hq']) { %>
+            <p style="color: red"><%= errors['hq'].message %></p>
+            <% } %>
+          </div>
+
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select name="type" id="type">
+              <option value="Brand">Brand</option>
+              <option value="Division">Division</option>
+              <option value="Private">Private</option>
+              <option value="Public">Public</option>
+              <option value="Subsidiary">Subsidiary</option>
+              <option selected disabled hidden value="Unknown">Select an Option</option>
+            </select>
+            <% if (errors['type']) { %>
+            <p style="color: red"><%= errors['type'].message %></p>
+            <% } %>
+          </div>
+
+
+
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

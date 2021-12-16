@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <title>Vehicle Database</title>
+    </head>
+    
+    <body>
+      <%- include('common/header'); -%>
+
+      <div class="container">
+        <h1 class="text-center">Add a new vehicle</h1>
+        <div class="row justify-content-md-center">
+          <div class="col-">
+            <form method="POST" action="/create-specification">
+
+              <div class="form-group">
+                <label for="name">Manufacturer</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="manufacturer"
+                  name="manufacturer"
+                  placeholder="Enter Manufacturer"
+                />
+                <% if (errors['manufacturer']) { %>
+                <p style="color: red"><%= errors['manufacturer'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="manufacturer">Select Manufacturer</label>
+                <select
+                  class="form-control"
+                  name="manufacturer_id"
+                  id="manufacturer"
+                >12
+                  <% manufacturers.forEach( manufacturer => { %>
+                  <option value="<%= manufacturer._id %>"><%= manufacturer.name %></option>
+
+                  <% }) %>
+                </select>
+
+              <div class="form-group">
+                <label for="model">Model</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="model"
+                  name="model"
+                  placeholder="Enter Model"
+                />
+                <% if (errors['model']) { %>
+                <p style="color: red"><%= errors['model'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="submodel">Submodel</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="submodelr"
+                  name="submodel"
+                  placeholder="Enter submodel"
+                />
+                <% if (errors['submodel']) { %>
+                <p style="color: red"><%= errors['submodel'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="year">Year</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="year"
+                  name="year"
+                  placeholder="Enter year"
+                />
+                <% if (errors['year']) { %>
+                <p style="color: red"><%= errors['year'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="body_style">Body Style</label>
+                <select name="body_style" id="body_style">
+                  <option value="Brand">Saloon</option>
+                  <option value="Division">Coupe</option>
+                  <option value="Private">Estate</option>
+                  <option value="Public">Hatchback</option>
+                  <option value="Subsidiary">Convertible</option>
+                  <option value="Subsidiary">Minivan</option>
+                  <option value="Subsidiary">SUV</option>
+                  <option value="Subsidiary">Pickup Truck</option>
+                  <option selected value="Unknown">Unknown</option>
+                </select>
+                <% if (errors['body_style']) { %>
+                <p style="color: red"><%= errors['body_style'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="doors">Doors</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="doors"
+                  name="doors"
+                  placeholder="Enter mass"
+                />
+                <% if (errors['doors']) { %>
+                <p style="color: red"><%= errors['doors'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="mass">Mass</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="mass"
+                  name="mass"
+                  placeholder="Enter mass"
+                />
+                <% if (errors['mass']) { %>
+                <p style="color: red"><%= errors['mass'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="displacement">displacement</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="displacement"
+                  name="displacement"
+                  placeholder="Enter displacement"
+                />
+                <% if (errors['displacement']) { %>
+                <p style="color: red"><%= errors['displacement'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="arrangement">arrangement</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="arrangement"
+                  name="arrangement"
+                  placeholder="Enter arrangement"
+                />
+                <% if (errors['arrangement']) { %>
+                <p style="color: red"><%= errors['arrangement'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="power">power</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="power"
+                  name="power"
+                  placeholder="Enter power"
+                />
+                <% if (errors['power']) { %>
+                <p style="color: red"><%= errors['power'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="torque">torque</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="torque"
+                  name="torque"
+                  placeholder="Enter torque"
+                />
+                <% if (errors['torque']) { %>
+                <p style="color: red"><%= errors['torque'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="fuel">fuel</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fuel"
+                  name="fuel"
+                  placeholder="Enter fuel"
+                />
+                <% if (errors['fuel']) { %>
+                <p style="color: red"><%= errors['fuel'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="drivetrain">drivetrain</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="drivetrain"
+                  name="drivetrain"
+                  placeholder="Enter drivetrain"
+                />
+                <% if (errors['drivetrain']) { %>
+                <p style="color: red"><%= errors['drivetrain'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="gears">gears</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="gears"
+                  name="gears"
+                  placeholder="Enter gears"
+                />
+                <% if (errors['gears']) { %>
+                <p style="color: red"><%= errors['gears'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="transmission">transmission</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="transmission"
+                  name="transmission"
+                  placeholder="Enter transmission"
+                />
+                <% if (errors['transmission']) { %>
+                <p style="color: red"><%= errors['transmission'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="acceleration">acceleration</label>
+                <input
+                  type="number"
+                  step="any"
+                  class="form-control"
+                  id="acceleration"
+                  name="acceleration"
+                  placeholder="Enter acceleration"
+                />
+                <% if (errors['acceleration']) { %>
+                <p style="color: red"><%= errors['acceleration'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="top_speed">top_speed</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="top_speed"
+                  name="top_speed"
+                  placeholder="Enter top_speed"
+                />
+                <% if (errors['top_speed']) { %>
+                <p style="color: red"><%= errors['top_speed'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="combined_mpg">combined_mpg</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="combined_mpg"
+                  name="combined_mpg"
+                  placeholder="Enter mpg"
+                />
+                <% if (errors['combined_mpg']) { %>
+                <p style="color: red"><%= errors['combined_mpg'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="insurance_group">insurance_group</label>
+                <input
+                  type="number"
+                  min="0"
+                  max="50"
+                  class="form-control"
+                  id="insurance_group"
+                  name="insurance_group"
+                  placeholder="Enter insurance_group"
+                />
+                <% if (errors['insurance_group']) { %>
+                <p style="color: red"><%= errors['insurance_group'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="luggage_capacity">luggage_capacity</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="luggage_capacity"
+                  name="luggage_capacity"
+                  placeholder="Enter luggage_capacity"
+                />
+                <% if (errors['luggage_capacity']) { %>
+                <p style="color: red"><%= errors['luggage_capacity'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="average_used_price">average_used_price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="average_used_price"
+                  name="average_used_price"
+                  placeholder="Enter average_used_price"
+                />
+                <% if (errors['average_used_price']) { %>
+                <p style="color: red"><%= errors['average_used_price'].message %></p>
+                <% } %>
+              </div>
+    
+            </div>
+
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
+</html>

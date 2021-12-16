@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="/table.css" rel="stylesheet" />
 </head>
 <body>
+    <%- include('common/header'); -%>
     <table>
     <thead>
         <tr>
@@ -27,6 +29,7 @@
             <td>Insurance Group</td>
             <td>Luggage Capacity</td>
             <td>Average Used Price</td>
+            <td>Options</td>
         </tr>
     </thead>
     <%  
@@ -56,8 +59,8 @@
             <td><%=spec.luggage_capacity%></td>
             <td><%=spec.average_used_price%></td>
 
-            <td class="text-center"><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-            <a  href="/specifications/delete/<%= spec.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+            <td class="text-center"><a class='editButton'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+            <a  href="/specifications/delete/<%= spec.id %>" class="deleteButton"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
         </tr>
     <%  
         });
