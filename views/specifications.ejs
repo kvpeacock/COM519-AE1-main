@@ -5,30 +5,30 @@
 </head>
 <body>
     <%- include('common/header'); -%>
-    <table>
+    <table id = "vehicleTable">
     <thead>
         <tr>
-            <td>Manufacturer</td>
-            <td>Model</td>
-            <td>Submodel</td>
-            <td>Year</td>
-            <td>Body Style</td>
-            <td>Doors</td>
-            <td>Mass</td>
-            <td>Displacement</td>
-            <td>Arrangement</td>
-            <td>Power</td>
-            <td>Torque</td>
-            <td>Fuel</td>
-            <td>Drivetrain</td>
-            <td>Gears</td>
-            <td>Transmission</td>
-            <td>0-60</td>
-            <td>Top Speed</td>
-            <td>Combined MPG</td>
-            <td>Insurance Group</td>
-            <td>Luggage Capacity</td>
-            <td>Average Used Price</td>
+            <td onclick="sortTable(0)">Manufacturer</td>
+            <td onclick="sortTable(1)">Model</td>
+            <td onclick="sortTable(2)">Submodel</td>
+            <td onclick="sortTable(3)">Year</td>
+            <td onclick="sortTable(4)">Body Style</td>
+            <td onclick="sortTable(5)">Doors</td>
+            <td onclick="sortTable(6)">Mass</td>
+            <td onclick="sortTable(7)">Displacement</td>
+            <td onclick="sortTable(8)">Arrangement</td>
+            <td onclick="sortTable(9)">Power</td>
+            <td onclick="sortTable(10)">Torque</td>
+            <td onclick="sortTable(11)">Fuel</td>
+            <td onclick="sortTable(12)">Drivetrain</td>
+            <td onclick="sortTable(13)">Gears</td>
+            <td onclick="sortTable(14)">Transmission</td>
+            <td onclick="sortTable(15)">0-60</td>
+            <td onclick="sortTable(16)">Top Speed</td>
+            <td onclick="sortTable(17)">Combined MPG</td>
+            <td onclick="sortTable(18)"> Insurance Group</td>
+            <td onclick="sortTable(19)">Luggage Capacity</td>
+            <td onclick="sortTable(20)">Average Used Price</td>
             <td>Options</td>
         </tr>
     </thead>
@@ -59,7 +59,7 @@
             <td><%=spec.luggage_capacity%></td>
             <td><%=spec.average_used_price%></td>
 
-            <td class="text-center"><a class='editButton'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+            <td class="text-center"><a href="/specifications/update/<%= spec.id %>" class='editButton'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
             <a  href="/specifications/delete/<%= spec.id %>" class="deleteButton"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
         </tr>
     <%  
@@ -75,3 +75,61 @@
 
 
 </html>
+
+<script>
+    //Script provided by W3schools.com [https://www.w3schools.com/howto/howto_js_sort_table.asp]
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("vehicleTable");
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc"; 
+        /*Make a loop that will continue until
+        no switching has been done:*/
+        while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+                //start by saying there should be no switching:
+                shouldSwitch = false;
+                /*Get the two elements you want to compare,
+                one from current row and one from the next:*/
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /*check if the two rows should switch place,
+                based on the direction, asc or desc:*/
+                if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /*If a switch has been marked, make the switch
+                and mark that a switch has been done:*/
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                //Each time a switch is done, increase this count by 1:
+                switchcount ++;      
+            } else {
+                /*If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again.*/
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>

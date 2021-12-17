@@ -15,14 +15,13 @@
       <%- include('common/header'); -%>
 
       <div class="container">
-        <h1 class="text-center">Add a new vehicle</h1>
+        <h1 class="text-center">Edit vehicle specifications</h1>
           <div class="details">
-            <form method="POST" action="/create-specification">
+            <form method="POST">
 
               <div class="form-group">
                 <label for="manufacturer_id">Manufacturer*</label>
                 <select
-                  onchange="this.setCustomValidity(validity.valueMissing ? 'Please select a manufacturer' : '');"
                   class="form-control"
                   name="manufacturer_id"
                   id="manufacturer_id"
@@ -37,6 +36,7 @@
               <div class="form-group">
                 <label for="model">Model*</label>
                 <input
+                  value="<%= specification.model %>"
                   type="text"
                   required
                   class="form-control"
@@ -52,6 +52,7 @@
               <div class="form-group">
                 <label for="submodel">Submodel</label>
                 <input
+                  value="<%= specification.submodel %>"
                   type="text"
                   class="form-control"
                   id="submodel"
@@ -66,6 +67,7 @@
               <div class="form-group">
                 <label for="year">Year</label>
                 <input
+                  value="<%= specification.year %>"
                   type="number"
                   class="form-control"
                   id="year"
@@ -98,6 +100,7 @@
               <div class="form-group">
                 <label for="doors">Doors</label>
                 <input
+                value="<%= specification.doors %>"
                   type="number"
                   class="form-control"
                   id="doors"
@@ -112,6 +115,7 @@
               <div class="form-group">
                 <label for="mass">Mass</label>
                 <input
+                  value="<%= specification.mass %>"
                   type="number"
                   class="form-control"
                   id="mass"
@@ -127,6 +131,7 @@
                 <label for="displacement">Engine Displacement</label>
                 <input
                   type="number"
+                  value="<%= specification.engine_displacement %>"
                   class="form-control"
                   id="displacement"
                   name="displacement"
@@ -141,6 +146,7 @@
                 <label for="arrangement">Engine Arrangement</label>
                 <input
                   type="text"
+                  value="<%= specification.engine_arrangement %>"
                   class="form-control"
                   id="arrangement"
                   name="arrangement"
@@ -155,6 +161,7 @@
                 <label for="power">Power</label>
                 <input
                   type="number"
+                  value="<%= specification.power %>"
                   class="form-control"
                   id="power"
                   name="power"
@@ -169,6 +176,7 @@
                 <label for="torque">Torque</label>
                 <input
                   type="number"
+                  value="<%= specification.torque %>"
                   class="form-control"
                   id="torque"
                   name="torque"
@@ -215,6 +223,7 @@
                 <label for="gears">Gears</label>
                 <input
                   type="number"
+                  value="<%= specification.gears %>"
                   class="form-control"
                   id="gears"
                   name="gears"
@@ -238,9 +247,10 @@
               </div>
 
               <div class="form-group">
-                <label for="acceleration">Acceleration</label>
+                <label for="acceleration">0-60 Time (s)</label>
                 <input
                   type="number"
+                  value="<%= specification.acceleration %>"
                   step="any"
                   class="form-control"
                   id="acceleration"
@@ -255,6 +265,7 @@
               <div class="form-group">
                 <label for="top_speed">Top Speed</label>
                 <input
+                value="<%= specification.top_speed %>"
                   type="number"
                   class="form-control"
                   id="top_speed"
@@ -270,6 +281,7 @@
                 <label for="combined_mpg">MPG</label>
                 <input
                   type="number"
+                  value="<%= specification.combined_mpg %>"
                   class="form-control"
                   id="combined_mpg"
                   name="combined_mpg"
@@ -284,6 +296,7 @@
                 <label for="insurance_group">Insurance Group</label>
                 <input
                   type="number"
+                  value="<%= specification.insurance_group %>"
                   min="0"
                   max="50"
                   class="form-control"
@@ -300,6 +313,7 @@
                 <label for="luggage_capacity">Luggage Capacity</label>
                 <input
                   type="number"
+                  value="<%= specification.luggage_capacity %>"
                   class="form-control"
                   id="luggage_capacity"
                   name="luggage_capacity"
@@ -314,6 +328,7 @@
                 <label for="average_used_price">Average Used Price</label>
                 <input
                   type="number"
+                  value="<%= specification.average_used_price %>"
                   class="form-control"
                   id="average_used_price"
                   name="average_used_price"
@@ -333,5 +348,17 @@
 </html>
 
 <script>
-  document.getElementById("manufacturer_id").setCustomValidity("Please select a manufacturer");
+  function setSelectedType(elementToChange, valueToSet) {
+    for ( var i = 0; i < elementToChange.options.length; i++ ) {
+      if ( elementToChange.options[i].text == valueToSet ) {
+          elementToChange.options[i].selected = true;
+          return;
+      }
+    }
+  }
+  setSelectedType(document.getElementById("manufacturer_id"),"<%=specification.manufacturer%>");
+  setSelectedType(document.getElementById("body_style"),"<%=specification.body_style%>");
+  setSelectedType(document.getElementById("fuel"),"<%=specification.fuel_type%>");
+  setSelectedType(document.getElementById("drivetrain"),"<%=specification.drivetrain%>");
+  setSelectedType(document.getElementById("transmission"),"<%=specification.transmission%>");
 </script>

@@ -12,13 +12,13 @@ exports.list = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const name = req.body.name;
-    console.log(name)
-    const manufacturer = new Manufacturer({ name: req.body.name, country : req.body.country, founding_year: req.body.founding_year, hq : req.body.hq , type: req.body.type, models: "1" });
-    console.log(manufacturer);
-    await manufacturer.save();
+    await Manufacturer.create({ name: req.body.name, country : req.body.country, founding_year: req.body.founding_year, hq : req.body.hq , type: req.body.type, models: "1" });
     res.redirect('/manufacturers')
   } catch (e) {
-    if (e.errors) {
+    if (e.code === 11000){
+      res.render('create-manufacturer', { errors: e  })
+    }
+    else if (e.errors) {
       console.log(e.errors);
       res.render('create-manufacturer', { errors: e.errors })
       return;
@@ -66,13 +66,22 @@ exports.update = async (req, res) => {
   const id = req.params.id;
   try {
     const manufacturer = await Manufacturer.findOneAndUpdate({ _id: id }, { 
+      name: req.body.name,
       founding_year: req.body.founding_year,
       hq: req.body.hq,
       type: req.body.type
     });
     res.redirect('/manufacturers/?message=manufacturer has been updated');
   } catch (e) {
-    if (e.errors) {
+    if (e.code === 11000){
+      const manufacturer = await Manufacturer.findById(id);
+      res.render('update-manufacturer', { 
+        manufacturer: manufacturer, 
+        id: id, 
+        errors: e
+      });
+    }
+    else if (e.errors) {
       console.log(e.errors);
       const manufacturer = await Manufacturer.findById(id);
       res.render('update-manufacturer', { 

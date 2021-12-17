@@ -3,20 +3,30 @@ const { Schema } = mongoose;
 
 const specificationSchema = new Schema(
   {
-    manufacturer: String,
-    model: String,
+    manufacturer: {type: String, required: [true, "Manufacturer is required"]},
+    model: { type: String, required: [true, "Model is required"]},
     submodel: String,
-    year: { type: Number, minlength: 4, maxlength: 4},
-    body_style: { type: String, enum: ["Saloon","Coupe","Estate","Hatchnback","Convertible","Minivan","SUV","Pickup Truck","Unknown"]},
+    year: { type: Number, 
+      validate : {
+        validator : function(val){
+          if (val === null){
+            return true
+          }
+          return val.toString().length === 4 
+        },
+        message: "Year must be 4 digits"
+      }
+    },
+    body_style: { type: String, enum: ["Saloon","Coupe","Estate","Hatchback","Convertible","Minivan","SUV","Pickup Truck",""]},
     doors: Number,
     engine_displacement: Number,
     engine_arrangement: String,
     power: Number,
     torque: Number,
-    fuel_type: { type: String, enum: ["Petrol", "Diesel", "Hybrid", "Electric", "Hydrogen", "Unknown"]},
-    drivetrain: {type: String, enum: ["FF","FR","MR","RR","4WD", "Other", "Unknown"]},
+    fuel_type: { type: String, enum: ["Petrol", "Diesel", "Hybrid", "Electric", "Hydrogen", ""]},
+    drivetrain: {type: String, enum: ["FF","FR","MR","RR","4WD", "Other", ""]},
     gears: Number,
-    transmission: { type: String, enum:["MT", "AT"]},
+    transmission: { type: String, enum:["MT", "AT",""]},
     acceleration: Number,
     top_speed: Number,
     combined_mpg: Number,

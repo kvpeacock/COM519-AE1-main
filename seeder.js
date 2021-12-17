@@ -50,7 +50,8 @@ async function main() {
         ]);
 
         const manufacturers = await VehicleManufacturersRef.toArray();
-        await db.collection("manufacturers").insertMany(manufacturers)
+        await db.collection("manufacturers").insertMany(manufacturers);
+        
 
 
 

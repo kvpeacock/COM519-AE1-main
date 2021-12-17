@@ -7,6 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <title>Vehicle Database</title>
+    <link href="/forms.css" rel="stylesheet" />
   </head>
   
   <body>
@@ -14,13 +15,12 @@
 
     <div class="container">
       <h1 class="text-center">Edit an existing manufacturer</h1>
-      <div class="row justify-content-md-center">
-        <div class="col-">
+        <div class="details">
           <form method="POST">
 
             <div class="form-group">
               <label for="name">Name</label>
-              <input disabled
+              <input
                 value="<%= manufacturer.name %>"
                 type="text"
                 class="form-control"
@@ -31,6 +31,9 @@
               <% if (errors['name']) { %>
               <p style="color: red"><%= errors['name'].message %></p>
               <% } %>
+              <% if (errors.code === 11000) { %>
+                <p style="color: red">This manufacturer already exists</p>
+                <% } %>
             </div>
 
             <div class="form-group">
@@ -86,16 +89,12 @@
                 <option value="Private">Private</option>
                 <option value="Public">Public</option>
                 <option value="Subsidiary">Subsidiary</option>
-                <option value="Unknown">Unknown</option>
+                <option hidden selected value="">Select an option</option>
               </select>
               <% if (errors['type']) { %>
               <p style="color: red"><%= errors['type'].message %></p>
               <% } %>
             </div>
-  
-          </div>
-
-
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
@@ -114,4 +113,5 @@
     }
   }
   setSelectedType(document.getElementById("type"),"<%=manufacturer.type%>");
+
 </script>

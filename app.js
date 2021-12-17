@@ -40,6 +40,11 @@ app.get("/create-specification", specificationController.createView);
 app.post("/create-specification", specificationController.create);
 app.get("/specifications", specificationController.list);
 app.get("/specifications/delete/:id", specificationController.delete);
+app.get("/specifications/update/:id", specificationController.edit);
+app.post("/specifications/update/:id", specificationController.update);
+
+
+
 
 app.get("/create-manufacturer", manufacturerController.createView);
 app.post("/create-manufacturer", manufacturerController.create);
