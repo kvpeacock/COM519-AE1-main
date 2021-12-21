@@ -1,19 +1,13 @@
 input[type=text],
 input[type=number],
+input[type=date],
+input[type=url],
 select {
   padding: 10px;
   margin: 10px 0;
-  width: 160px;
 }
 
-
-
 button {
-/* remove default behavior */
-appearance:none;
--webkit-appearance:none;
-
-/* usual styles */
 padding:10px;
 border:none;
 background-color:#333;

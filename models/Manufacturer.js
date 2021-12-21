@@ -23,17 +23,7 @@ const manufacturerSchema = new Schema(
     },
     hq: String,
     type: {type: String, enum: ["Brand","Division","Public","Private","Subsidiary","",]},
-    models: {type: Number, default: 0}
   },
   { timestamps: true }
 );
-
 module.exports = mongoose.model("Manufacturer", manufacturerSchema);
-
-/*
-manufacturerSchema.path('name').validate(async (value) => {
-  const nameCount = await mongoose.models.Manufacturer.countDocuments({name: value });
-  return !nameCount;
-}, 'Manufacturer already exists');
-*/
-

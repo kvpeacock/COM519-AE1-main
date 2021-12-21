@@ -1,0 +1,42 @@
+.editButton {
+    background-color: #19ac1e;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10%;
+    }
+.deleteButton {
+background-color: #c01717;
+border: none;
+color: white;
+padding: 10px 15px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 10%;
+}
+table {
+border-spacing: 0;
+width: 100%;
+}
+
+thead {
+cursor: pointer;
+color: #ddd;
+font-weight: bold;
+background-color: rgb(88, 88, 88)
+}
+
+th, td {
+text-align: left;
+padding: 10px;
+}
+
+tr:nth-child(even) {
+background-color: #c7c7c7
+}

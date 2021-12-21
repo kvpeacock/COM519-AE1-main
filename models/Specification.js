@@ -6,7 +6,7 @@ const specificationSchema = new Schema(
     manufacturer: {type: String, required: [true, "Manufacturer is required"]},
     model: { type: String, required: [true, "Model is required"]},
     submodel: String,
-    year: { type: Number, 
+    year: { type: Number,
       validate : {
         validator : function(val){
           if (val === null){
@@ -23,7 +23,7 @@ const specificationSchema = new Schema(
     engine_arrangement: String,
     power: Number,
     torque: Number,
-    fuel_type: { type: String, enum: ["Petrol", "Diesel", "Hybrid", "Electric", "Hydrogen", ""]},
+    fuel_type: { type: String, enum: ["Petrol", "Diesel", "Hybrid", "Electric", "Hydrogen", "Other", ""]},
     drivetrain: {type: String, enum: ["FF","FR","MR","RR","4WD", "Other", ""]},
     gears: Number,
     transmission: { type: String, enum:["MT", "AT",""]},
@@ -43,4 +43,5 @@ const specificationSchema = new Schema(
   { timestamps: true }
 );
 
+specificationSchema.index({"$**": 'text'});
 module.exports = mongoose.model("Specification", specificationSchema);

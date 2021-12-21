@@ -65,10 +65,11 @@
               </div>
 
               <div class="form-group">
-                <label for="year">Year</label>
+                <label for="year">Year*</label>
                 <input
                   value="<%= specification.year %>"
                   type="number"
+                  required
                   class="form-control"
                   id="year"
                   name="year"
@@ -102,6 +103,7 @@
                 <input
                 value="<%= specification.doors %>"
                   type="number"
+                  min=0
                   class="form-control"
                   id="doors"
                   name="doors"
@@ -117,6 +119,7 @@
                 <input
                   value="<%= specification.mass %>"
                   type="number"
+                  min=0
                   class="form-control"
                   id="mass"
                   name="mass"
@@ -131,6 +134,7 @@
                 <label for="displacement">Engine Displacement</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.engine_displacement %>"
                   class="form-control"
                   id="displacement"
@@ -161,6 +165,7 @@
                 <label for="power">Power</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.power %>"
                   class="form-control"
                   id="power"
@@ -176,6 +181,7 @@
                 <label for="torque">Torque</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.torque %>"
                   class="form-control"
                   id="torque"
@@ -195,7 +201,7 @@
                   <option value="Diesel">Diesel</option>
                   <option value="Hybrid">Hybrid</option>
                   <option value="Electric">Electric</option>
-                  <option value="Hydrogen">Hyrdogen</option>
+                  <option value="Hydrogen">Hydrogen</option>
                   <option value="Other">Other</option>
                 </select>
                 <% if (errors['fuel']) { %>
@@ -223,6 +229,7 @@
                 <label for="gears">Gears</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.gears %>"
                   class="form-control"
                   id="gears"
@@ -250,6 +257,7 @@
                 <label for="acceleration">0-60 Time (s)</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.acceleration %>"
                   step="any"
                   class="form-control"
@@ -267,6 +275,7 @@
                 <input
                 value="<%= specification.top_speed %>"
                   type="number"
+                  min=0
                   class="form-control"
                   id="top_speed"
                   name="top_speed"
@@ -281,6 +290,7 @@
                 <label for="combined_mpg">MPG</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.combined_mpg %>"
                   class="form-control"
                   id="combined_mpg"
@@ -313,6 +323,7 @@
                 <label for="luggage_capacity">Luggage Capacity</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.luggage_capacity %>"
                   class="form-control"
                   id="luggage_capacity"
@@ -328,6 +339,7 @@
                 <label for="average_used_price">Average Used Price</label>
                 <input
                   type="number"
+                  min=0
                   value="<%= specification.average_used_price %>"
                   class="form-control"
                   id="average_used_price"
@@ -357,6 +369,7 @@
     }
   }
   setSelectedType(document.getElementById("manufacturer_id"),"<%=specification.manufacturer%>");
+  console.log("<%=specification.manufacturer%>")
   setSelectedType(document.getElementById("body_style"),"<%=specification.body_style%>");
   setSelectedType(document.getElementById("fuel"),"<%=specification.fuel_type%>");
   setSelectedType(document.getElementById("drivetrain"),"<%=specification.drivetrain%>");

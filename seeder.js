@@ -17,13 +17,12 @@ async function main() {
             db.dropDatabase();
         }
 
-        const load = loading("test").start();
+        const load = loading("Loading specifications.").start();
 
         const data = await fs.readFile(path.join(__dirname, "vehicles.json"), "utf-8");
-        console.log(data);
         await db.collection("specifications").insertMany(JSON.parse(data));
 
-        //Creates manufacturer document
+        //Creates manufacturer collection
         const VehicleManufacturersRef = await db.collection("specifications").aggregate([
             {$match: {manufacturer: {$ne: null}}},
             {
@@ -33,7 +32,6 @@ async function main() {
                     founding_year: {"$first"  : "$founding_year"},
                     hq: {"$first"  : "$headquarters"},
                     type: {"$first"  : "$manufacturer_type"},
-                    models: { $sum : 1},
                 },
             },
             {
@@ -44,7 +42,6 @@ async function main() {
                     founding_year: "$founding_year",
                     hq: "$hq",
                     type: "$type",
-                    models: "$models",
                 },
             },
         ]);
@@ -52,41 +49,6 @@ async function main() {
         const manufacturers = await VehicleManufacturersRef.toArray();
         await db.collection("manufacturers").insertMany(manufacturers);
         
-
-
-
-        //Creates reviews document
-        const VehicleReviewsRef = await db.collection("specifications").aggregate([
-            {$match: {reviews: {$ne: null}}},
-            {
-                $group: {
-                    _id: "$reviews",
-                    model : { "$first" : "$model"},
-                    reviews: { "$first" : "$reviews"}
-                },
-            },
-            {
-                $project: {
-                    _id: 0,
-                    model: "$model",
-                    reviews: "$reviews",
-                    
-                },
-            },
-        ]);
-
-
-
-
-        const reviews = await VehicleReviewsRef.toArray();
-        console.info("Reviews:")
-        console.info(reviews);
-        await db.collection("reviews").insertMany(reviews)
-
-
-
-
-
         const updatedManufacturersRef = db.collection("manufacturers").find({});
         const updatedManufacturers = await  updatedManufacturersRef.toArray();
         updatedManufacturers.forEach (async ({_id, name}) => {
@@ -98,9 +60,27 @@ async function main() {
                 },
             ]);
         });
-           
+    //Creates reviews collection    
+    const ReviewRef = await db.collection("specifications").aggregate([
+        {$unwind : { path: "$reviews"}},
+        {$match: {reviews: {$ne: null}}},
+        { $group: {
+            _id: "$reviews",
+            vehicle: {"$first": "$_id"},
+            review: {"$first": "$reviews"},
+        }},
+
+        {$project: {
+            _id: 0,
+            vehicle_id: "$vehicle",
+            review_contents: "$review",
+        },
+    }]);
+    const reviews = await ReviewRef.toArray();
+    await db.collection("reviews").insertMany(reviews)
+
     load.stop();
-    console.info("DONE");
+    console.info("Loaded specifications.");
 
     process.exit();
     }catch(error){

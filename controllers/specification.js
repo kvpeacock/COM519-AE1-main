@@ -3,8 +3,9 @@ const Specification = require("../models/Specification");
 
 exports.list = async (req, res) => {
   try {
-    const specifications = await Specification.find({});
-    res.render("specifications", { specifications: specifications });
+    const manufacturers = await Manufacturer.find({});
+    const specifications = await Specification.find({}).sort('manufacturer');
+    res.render("specifications", { specifications: specifications, manufacturers: manufacturers });
   } catch (e) {
     res.status(404).send({ message: "unable to list vehicles" });
   }
@@ -13,7 +14,7 @@ exports.list = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const manufacturer = await Manufacturer.findById(req.body.manufacturer_id);
-    const specification = new Specification({ 
+    await Specification.create({ 
       manufacturer: manufacturer.name,
       model: req.body.model,
       submodel: req.body.submodel,
@@ -36,8 +37,7 @@ exports.create = async (req, res) => {
       luggage_capacity: req.body.luggage_capacity,
       average_used_price: req.body.average_used_price,   
     });
-    await specification.save()
-    res.redirect('/specifications')
+    res.redirect('/specifications');
   } catch (e) {
     if (e.errors) {
       const manufacturers = await Manufacturer.find({});
@@ -48,8 +48,7 @@ exports.create = async (req, res) => {
       message: JSON.parse(e),
     });
   } 
-}
-
+};
 
 exports.createView = async (req, res) => {
   try {
@@ -65,7 +64,7 @@ exports.createView = async (req, res) => {
       message: `could not generate create data`,
     });
   }
-}
+};
 
 exports.edit = async (req, res) => {
   const id = req.params.id;
@@ -83,13 +82,13 @@ exports.edit = async (req, res) => {
       message: `could not find specification ${id}.`,
     });
   }
-}
+};
 
 exports.update = async (req, res) => {
   const id = req.params.id;
   try {
     const manufacturer = await Manufacturer.findById(req.body.manufacturer_id);
-    const specification = await Specification.findOneAndUpdate({ _id: id },
+    await Specification.findOneAndUpdate({ _id: id },
       {
         manufacturer: manufacturer.name,
         model: req.body.model,
@@ -117,9 +116,11 @@ exports.update = async (req, res) => {
   } catch (e) {
     if (e.errors) {
       console.log(e.errors);
-      const specification = await specification.findById(id);
+      const specification = await Specification.findById(id);
+      const manufacturers = await Manufacturer.find({});
       res.render('update-specification', { 
         specification: specification, 
+        manufacturers: manufacturers,
         id: id, 
         errors: e.errors 
       });
@@ -130,8 +131,6 @@ exports.update = async (req, res) => {
     });
   }
 };
-
-
 
 exports.delete = async (req, res) => {
   const id = req.params.id;

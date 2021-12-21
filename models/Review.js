@@ -3,16 +3,23 @@ const { Schema } = mongoose;
 
 const reviewSchema = new Schema(
   {
-    score : Number,
-    reviewer : String,
-    review_company : String,
-    review_date : String,
-    review_link : String
+    vehicle_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vehicle",
+    },
+    review_contents : {
+      score : Number,
+      reviewer : String,
+      review_company : String,
+      review_date : String,
+      review_link : String
+    }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("review", reviewSchema);
+module.exports = mongoose.model("Review", reviewSchema);
+
 
 
 

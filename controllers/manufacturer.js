@@ -1,8 +1,9 @@
 const Manufacturer= require("../models/Manufacturer");
+const Specification= require("../models/Specification");
 
 exports.list = async (req, res) => {
   try {
-    const manufacturers = await Manufacturer.find({});
+    const manufacturers = await Manufacturer.find({}).sort('name');
     res.render("manufacturers", { manufacturers: manufacturers });
   } catch (e) {
     res.status(404).send({ message: "unable to list manufacturers" });
@@ -11,7 +12,6 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    const name = req.body.name;
     await Manufacturer.create({ name: req.body.name, country : req.body.country, founding_year: req.body.founding_year, hq : req.body.hq , type: req.body.type, models: "1" });
     res.redirect('/manufacturers')
   } catch (e) {
@@ -27,12 +27,11 @@ exports.create = async (req, res) => {
       message: JSON.parse(e),
     });
   } 
-}
-
+};
 
 exports.createView = async (req, res) => {
   try {
-    const manufacturers = await Manufacturer.find({});
+    const manufacturers = await Manufacturer.find({})
     res.render("create-manufacturer", {
       manufacturers: manufacturers,
       errors: {}
@@ -43,8 +42,7 @@ exports.createView = async (req, res) => {
       message: `could not generate create data`,
     });
   }
-}
-
+};
 
 exports.edit = async (req, res) => {
   const id = req.params.id;
@@ -60,17 +58,20 @@ exports.edit = async (req, res) => {
       message: `could not find manufacturer ${id}.`,
     });
   }
-}
+};
 
 exports.update = async (req, res) => {
   const id = req.params.id;
   try {
-    const manufacturer = await Manufacturer.findOneAndUpdate({ _id: id }, { 
+    const originalManufacturer = await Manufacturer.findById({_id: id})
+    await Manufacturer.findOneAndUpdate({ _id: id }, { 
       name: req.body.name,
+      country: req.body.country,
       founding_year: req.body.founding_year,
       hq: req.body.hq,
       type: req.body.type
     });
+    await Specification.updateMany({manufacturer: originalManufacturer.name}, {manufacturer: req.body.name});
     res.redirect('/manufacturers/?message=manufacturer has been updated');
   } catch (e) {
     if (e.code === 11000){

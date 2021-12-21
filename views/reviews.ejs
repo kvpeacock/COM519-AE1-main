@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="/table.css" rel="stylesheet" />
 </head>
 <body>
     <%- include('common/header'); -%>
-    <table>
+
+    <table id="reviewTable">
     <thead>
         <tr>
-            <td>Name</td>
+            <td>Vehicle</td>
             <td>Score</td>
-
+            <td>Reviewer</td>
+            <td>Review Company</td>
+            <td>Review Date</td>
+            <td>Review Link</td>          
+            <td>Options</td>
         </tr>
     </thead>
     <%  
     reviews.forEach(review => {
-    %>
-    
-        <tr>
-            <td><%=review.model%></td>
-            <td><%=review.review%></td>
-
-            <td class="text-center"><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-            <a  href="/reviews/delete/<%= review.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-        </tr>
-    <%  
-        });
+        specifications.forEach(spec =>{
+            if (spec._id.toString() == review.vehicle_id.toString()){
+            %>
+                <tr>
+                    <td><%=spec.manufacturer%> <%=spec.model%> <%=spec.submodel%> '<%=(spec.year).toString().slice(-2)%> </td>
+                    <td><%=review.review_contents.score%></td>
+                    <td><%=review.review_contents.reviewer%></td>
+                    <td><%=review.review_contents.review_company%></td>
+                    <td><%=review.review_contents.review_date%></td>
+                    <td><a href = "<%=review.review_contents.review_link%>" target="_blank">Full Review</a></td>
+                    <td>
+                        <a href="/reviews/update/<%= review.id %>" class="editButton">Edit</a>  
+                        <a href="/reviews/delete/<%= review.id %>" class="deleteButton">Delete</a>
+                    </td>
+                </tr>
+            <%
+                return;
+            }
+        })
+    })
     %>
     </table>
-
-
-    
+    <%- include('common/footer'); -%>
 </body>
-
-
-
-
 </html>

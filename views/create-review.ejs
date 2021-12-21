@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Vehicle Database</title>
+    <link href="/forms.css" rel="stylesheet" />
+  </head>
+<style>
+
+
+</style>
+ 
+<body>
+  <%- include('common/header'); -%>
+
+  <div class="container">
+    <h1 class="text-center">Add a new review</h1>
+      <div class="details">
+        <form method="POST" action="/create-review">
+          <h5>Please do not upload copyrighted material.</h5> 
+            <div class="form-group">
+                <label for="vehicle_id">Vehicle*</label>
+                <select
+                  class="form-control"
+                  name="vehicle_id"
+                  id="vehicle_id"
+                  required
+                >
+                <option selected hidden value="">Select an Option</option>
+                  <% specifications.forEach( spec => { %>
+                  <option value="<%= spec._id %>"> <%= spec.manufacturer %> <%= spec.model %> <%= spec.submodel %></option>
+                  <% }) %>
+                </select>
+                <% if (errors['vehicle_id']) { %>
+                    <p style="color: red"><%= errors['vehicle_id'].message %></p>
+                <% } %>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="score">Score</label>
+                <input
+                  type="number"
+                  min=0
+                  step="any"
+                  class="form-control"
+                  id="score"
+                  name="score"
+                  placeholder="Enter score"
+                />
+                <% if (errors['score']) { %>
+                <p style="color: red"><%= errors['score'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="reviewer">Reviewer</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="reviewer"
+                  name="reviewer"
+                  placeholder="Enter reviewer"
+                />
+                <% if (errors['reviewer']) { %>
+                <p style="color: red"><%= errors['reviewer'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="review_company">Review Company</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="review_company"
+                  name="review_company"
+                  placeholder="Enter Review Company"
+                />
+                <% if (errors['review_company']) { %>
+                <p style="color: red"><%= errors['review_company'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="review_date">Review Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="review_date"
+                  name="review_date"
+                  placeholder="Enter Review Date"
+                />
+                <% if (errors['review_date']) { %>
+                <p style="color: red"><%= errors['review_date'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="link">Review Link*</label>
+                <input
+                  type="url"
+                  required
+                  class="form-control"
+                  id="link"
+                  name="link"
+                  placeholder="Enter review link"
+                />
+                <% if (errors['link']) { %>
+                <p style="color: red"><%= errors['link'].message %></p>
+                <% } %>
+              </div>
+
+
+              
+
+
+
+
+
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
