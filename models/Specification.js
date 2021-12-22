@@ -34,7 +34,6 @@ const specificationSchema = new Schema(
     luggage_capacity: Number,
     mass: Number,
     average_used_price: Number,
-
     manufacturer_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Manufacturer",
@@ -43,5 +42,5 @@ const specificationSchema = new Schema(
   { timestamps: true }
 );
 
-specificationSchema.index({"$**": 'text'});
+specificationSchema.index({model: 'text', manufacturer: 'text', submodel: 'text'});
 module.exports = mongoose.model("Specification", specificationSchema);

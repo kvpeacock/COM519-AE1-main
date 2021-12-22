@@ -1,5 +1,4 @@
 const specificationView = (specification) => `
-
     <tr>
         <td>${specification.manufacturer} ${specification.model} ${specification.submodel}</td>
         <td>${specification.year}</td>
@@ -50,7 +49,6 @@ const tableHeaders = `
         <td>Options</td>
     </tr>
 </thead>`
-
 
 const handleSubmit = async () => {
     const searchVal = document.querySelector("#searchInput").value;

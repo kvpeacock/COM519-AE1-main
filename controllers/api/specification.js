@@ -9,10 +9,13 @@ exports.list =  async (req,res) => {
 
     try {
         const Result =  await Specification.find(
-           {model: new RegExp(searchQuery,"i")}
-         )
-        res.json(Result);
-        } 
+            { $text: { $search: searchQuery}},
+            { score: { $meta: "textScore" }}
+            ).sort( { score: { $meta: "textScore" } } ).limit(50)
+        if (Result.length!=0){
+            res.json(Result);
+        }
+    } 
     catch (error) {
         console.log(error);
         res.status(404).send({
