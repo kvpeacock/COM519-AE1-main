@@ -16,7 +16,7 @@ const User = require("./models/User");
 const app = express();
 app.set("view engine", "ejs");
 
-const { WEB_PORT, MONGODB_URI } = process.env;
+const { PORT, MONGODB_URI } = process.env;
 mongoose.set('runValidators', true);
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
@@ -104,8 +104,8 @@ app.post("/reviews/update/:id", reviewController.update);
 
 
 
-app.listen(WEB_PORT, () => {
+app.listen(PORT, () => {
     console.log(
-      `Listening at http://localhost:${WEB_PORT}`
+      `Listening at http://localhost:${PORT}`
     );
   });
