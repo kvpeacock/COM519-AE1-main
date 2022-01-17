@@ -12,7 +12,6 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log("HI")
   try {
     rb = req.body;
     await Review.create({ vehicle_id: rb.vehicle_id, review_contents: {score: rb.score, reviewer: rb.reviewer, review_company: rb.review_company, review_date: rb.review_date, review_link: rb.link} });
@@ -31,7 +30,6 @@ exports.create = async (req, res) => {
 };
 
 exports.createView = async (req, res) => {
-  console.log("HI")
   try {
     const specifications = await Specification.find({});
     const reviews = await Review.find({});

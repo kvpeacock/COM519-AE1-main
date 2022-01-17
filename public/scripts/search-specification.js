@@ -82,7 +82,6 @@ const tableHeaders = `
 const handleSubmit = async () => {
     const searchVal = document.querySelector("#searchInput").value;
     const user = document.querySelector("#user").value;
-    console.log("user" + user);
     const specificationDomRef = document.querySelector('#specificationItems');
     try {
 

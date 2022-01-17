@@ -12,7 +12,6 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  console.log('create')
   try {
     const manufacturer = await Manufacturer.findById(req.body.manufacturer_id);
     await Specification.create({ 
@@ -52,7 +51,6 @@ exports.create = async (req, res) => {
 };
 
 exports.createView = async (req, res) => {
-  console.log('createView')
   try {
     const specifications = await Specification.find({});
     const manufacturers = await Manufacturer.find({});
