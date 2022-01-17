@@ -1,4 +1,4 @@
-const specificationView = (specification) => `
+const specificationViewNotSignedIn = (specification) => `
     <tr>
         <td>${specification.manufacturer} ${specification.model} ${specification.submodel}</td>
         <td>${specification.year}</td>
@@ -20,8 +20,37 @@ const specificationView = (specification) => `
         <td>${specification.luggage_capacity}</td>
         <td>${specification.average_used_price}</td>
         <td class="text-center"><a href="/specifications/update/${ specification._id }" class='editButton'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-        <a href="/specifications/delete/${ specification._id }" class="deleteButton"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+        <a href="/specifications/delete/${ specification._id }" class="deleteButton"><span class="glyphicon glyphicon-remove"></span> Del</a>
     </tr>
+    
+`;
+
+const specificationViewSignedIn = (specification) => `
+    <tr>
+        <td>${specification.manufacturer} ${specification.model} ${specification.submodel}</td>
+        <td>${specification.year}</td>
+        <td>${specification.body_style}</td>
+        <td>${specification.doors}</td>
+        <td>${specification.mass}</td>
+        <td>${specification.engine_displacement}</td>
+        <td>${specification.engine_arrangement}</td>
+        <td>${specification.power}</td>
+        <td>${specification.torque}</td>
+        <td>${specification.fuel_type}</td>
+        <td>${specification.drivetrain}</td>
+        <td>${specification.gears}</td>
+        <td>${specification.transmission}</td>
+        <td>${specification.acceleration}</td>
+        <td>${specification.top_speed}</td>
+        <td>${specification.combined_mpg}</td>
+        <td>${specification.insurance_group}</td>
+        <td>${specification.luggage_capacity}</td>
+        <td>${specification.average_used_price}</td>
+        <td class="text-center"><a href="/specifications/update/${ specification._id }" class='editButton'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+        <a href="/specifications/delete/${ specification._id }" class="deleteButton"><span class="glyphicon glyphicon-remove"></span> Del</a>
+        <a href="#" class="editButton" onclick="handleSave('${specification._id}')">Save</a></td>
+    </tr>
+    
 `;
 
 const tableHeaders = `
@@ -52,6 +81,8 @@ const tableHeaders = `
 
 const handleSubmit = async () => {
     const searchVal = document.querySelector("#searchInput").value;
+    const user = document.querySelector("#user").value;
+    console.log("user" + user);
     const specificationDomRef = document.querySelector('#specificationItems');
     try {
 
@@ -65,9 +96,15 @@ const handleSubmit = async () => {
             specificationHtml.push("No results")
         }
 
-        searchResults.forEach(specification => {
-           specificationHtml.push(specificationView(specification));
-        });
+        if(user == "false"){
+            searchResults.forEach(specification => {
+                specificationHtml.push(specificationViewNotSignedIn(specification));     
+            })
+        }else{
+            searchResults.forEach(specification => {
+                specificationHtml.push(specificationViewSignedIn(specification));     
+            })
+        }
         specificationDomRef.innerHTML = specificationHtml.join("");
     } catch (e) {
         console.log(e);
@@ -75,3 +112,13 @@ const handleSubmit = async () => {
     }
 
 }
+
+const handleSave = async (id) => {
+    await fetch('/saved-specifications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: id})
+    })
+  };

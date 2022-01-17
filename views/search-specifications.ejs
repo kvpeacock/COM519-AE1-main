@@ -10,18 +10,18 @@
 <body>
     <%- include('common/header'); -%>
     <div>
-        <h5>Search by manufacturer, model or submodel.</h5>
+        <h5>Search by manufacturer.</h5>
         <input
         type="text"
         placeholder="Search"
         id="searchInput"
         />
+        <input type="hidden" value= <%=user%> id="user"/>
         <div>
             <button onclick="handleSubmit()" class="btn btn-outline-secondary" type="button" style="margin: 10px;">
                 Search vehicles
             </button>
         </div>
-    </form>
     <div> 
         <table id="specificationItems">
         </table>

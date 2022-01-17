@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="/table.css" rel="stylesheet" />
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <table id = "vehicleTable">
+    <thead>
+        <tr>
+            <td>Vehicle</td>
+            <td>Year</td>
+            <td>Body Style</td>
+            <td>Doors</td>
+            <td>Mass</td>
+            <td>Displacement</td>
+            <td>Arrangement</td>
+            <td>Power</td>
+            <td>Torque</td>
+            <td>Fuel</td>
+            <td>Drivetrain</td>
+            <td>Gears</td>
+            <td>Transmission</td>
+            <td>0-60</td>
+            <td>Top Speed</td>
+            <td>Combined MPG</td>
+            <td> Insurance Group</td>
+            <td>Luggage Capacity</td>
+            <td>Average Used Price</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    <%  
+    specifications.forEach(spec => {
+    %>
+        <tr>
+            <td><%=spec.manufacturer%> <%=spec.model%> <%=spec.submodel%></td>
+            <td><%=spec.year%></td>
+            <td><%=spec.body_style%></td>
+            <td><%=spec.doors%></td>
+            <td><%=spec.mass%></td>
+            <td><%=spec.engine_displacement%></td>
+            <td><%=spec.engine_arrangement%></td>
+            <td><%=spec.power%></td>
+            <td><%=spec.torque%></td>
+            <td><%=spec.fuel_type%></td>
+            <td><%=spec.drivetrain%></td>
+            <td><%=spec.gears%></td>
+            <td><%=spec.transmission%></td>
+            <td><%=spec.acceleration%></td>
+            <td><%=spec.top_speed%></td>
+            <td><%=spec.combined_mpg%></td>
+            <td><%=spec.insurance_group%></td>
+            <td><%=spec.luggage_capacity%></td>
+            <td><%=spec.average_used_price%></td>
+            <td><a href="/saved-specifications/delete/<%= spec.id %>" class="deleteButton"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+        </tr>
+    <%
+        return;
+    });
+    %>
+    </table>
+    <%- include('common/footer'); -%>
+</body>
+</html>
+

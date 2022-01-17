@@ -37,8 +37,15 @@ li:not(.active):hover {
       <li><a href="/manufacturers"> Manufacturers</a></li>
       <li><a href="/reviews">Reviews</a></li>
       <li><a href="/create-specification"> Add New Vehicle </a></li>
-      <li><a href="/create-manufacturer"> Add New Manufacturer </a></li>
       <li><a href="/create-review">Add New Review</a></li>
+      <% if(user) { %>
+      <li><a href="/create-manufacturer"> Add New Manufacturer </a></li>
+      <li><a href="/saved-specifications"> Saved Vehicles </a></li>
+      <li><a href="/logout"> <%= user.email %> (Logout)</a></li> <%
+      }%> <% if(!user) { %>
+      <li><a href="/login"> Login </a></li>
+      <li><a class="nav-link" href="/join"> Register </a></li>
+      <% } %>
     </ul>
   </header>
 
@@ -47,7 +54,7 @@ li:not(.active):hover {
 
 <script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-    </script>
+</script>
 
 <script>
   $(document).ready(function () {

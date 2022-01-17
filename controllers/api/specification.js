@@ -9,12 +9,11 @@ exports.list =  async (req,res) => {
 
     try {
         const Result =  await Specification.find(
-            { $text: { $search: searchQuery}},
-            { score: { $meta: "textScore" }}
-            ).sort( { score: { $meta: "textScore" } } ).limit(50)
+            {manufacturer: {"$regex": searchQuery, "$options" : "i"}})
         if (Result.length!=0){
             res.json(Result);
         }
+        else(res.json([]))
     } 
     catch (error) {
         console.log(error);
