@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "seedProduction": "cross-env NODE_ENV=production node seeder.js",
+    "seed": "node seeder.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +28,11 @@
     "loading-cli": "^1.1.0",
     "mongodb": "^4.2.1",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }

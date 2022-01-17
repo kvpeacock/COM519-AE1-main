@@ -3,9 +3,13 @@ require("dotenv").config();
 const fs = require("fs").promises;
 const path = require("path");
 const loading = require("loading-cli");
-const { MONGODB_URI } = process.env;
+//const { MONGODB_URI } = process.env;
 
-const client = new MongoClient(MONGODB_URI);
+//const client = new MongoClient(MONGODB_URI);
+
+const { MONGODB_URI, MONGODB__PRODUCTION_URI } = process.env;
+
+const client = new MongoClient(process.env.NODE_ENV === "production" ? MONGODB__PRODUCTION_URI : MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function main() {
     try{
