@@ -231,6 +231,6 @@ There are, however, a few things I think could be improved or added, to increase
 * A fully optimised UI for mobile/tablet users. 
 * Pagination is missing from the solution. Once the collections increase in size, it would be incredibly inefficient to load every single entry of a collection on a single page.
 * The way in which to add select a vehicle to review must edited once the vehicle collection increases in size. A dropdown to filter by manufacturer, and then filter by model would be a significant improvement to the user experience.
-* Since users have CRUD capabilities, a database backup should be enforced at specific intervals (e.g., once a day) to ensure data is saved incase the database is attacked (e.g., a user deleting all vehicles).<br>
+* Since users have CRUD capabilities, a database backup should be enforced at specific intervals (e.g., once a day) to ensure data is saved incase the database is attacked (e.g., a user deleting all vehicles).<br><br>
 As a direct result of this module, I have become familiar with MongoDB and the key process involved when designing and implementing a database and associated web application. Many of these key processes can be used elsewhere on other software projects, and I plan to enhance my methodology at work using them. 
 
