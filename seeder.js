@@ -3,9 +3,6 @@ require("dotenv").config();
 const fs = require("fs").promises;
 const path = require("path");
 const loading = require("loading-cli");
-//const { MONGODB_URI } = process.env;
-
-//const client = new MongoClient(MONGODB_URI);
 
 const { MONGODB_URI, MONGODB__PRODUCTION_URI } = process.env;
 
