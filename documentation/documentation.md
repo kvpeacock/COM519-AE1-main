@@ -61,28 +61,28 @@ There are a number of views used within this application, all of which have a sp
 * Search Specifications: <br>
     * This view is used for searching functionality. The user can enter a partial vehicle manufacturer to search for, and a list of matches will be displayed. Each entry also has two buttons, used to redirect the user to the edit page for the particular vehicle, or to delete the vehicle from the catalog. Provided that the user is signed in, an additional button will be present, allowing the user to save a particular vehicle to their favorites
     
-    ![Search View Whilst Signed Out](img/search-no-sign.png)
+    ![Search View Whilst Signed Out](img/search-no-sign.PNG)
     Searching for 'lex', whilst signed out. No save button is present.
 
-    ![Search View Whilst Signed In](img/search-sign.png)
+    ![Search View Whilst Signed In](img/search-sign.PNG)
     Searching for 'lex', whilst signed in. A save button is present.
 
 * Specifications: <br>
     * This view is used to display a list of vehicles specifications from the specification collection to the user. Each entry also has 2 buttons, used to redirect the user to the edit page for the particular vehicle, or to delete the vehicle from the catalog.
     
-    ![Specification View](img/specification.png)
+    ![Specification View](img/specification.PNG)
     The specification view.
 
 * Manufacturers: <br>
     * This view is used to display a list of manufacturers from the manufacturer collection to the user. Each entry also 2 buttons, used to redirect the user to the edit page for the particular manufacturer, or to delete the vehicle from the catalog.
 
-        ![Manufacturer View](img/manufacturer.png)
+        ![Manufacturer View](img/manufacturer.PNG)
         The manufacturer view.
 
 * Reviews: <br>
     * This view is used to display a list of reviews from the review collection to the user. Each entry also 2 buttons, used to redirect the user to the edit page for the particular review, or to delete the vehicle from the catalog.
 
-        ![Review View](img/review.png)
+        ![Review View](img/review.PNG)
         The review view.
 
 * Home: <br>
@@ -93,19 +93,19 @@ There are a number of views used within this application, all of which have a sp
 * Create Specification: <br>
     * This view is used to allow the user to define a new vehicle to add to the specification collection. The manufacturer and model are required. Only vehicles produced by a manufacturer in the manufacturer collection can be added.
 
-        ![Add New Specification View](img/add-specification-1.png)
+        ![Add New Specification View](img/add-specification-1.PNG)
         Partial screenshot of the Create Specification view.
 
 * Create Review: <br>
     * This view is used to allow the user to define a new review to add to the review collection. The vehicle and review link are required. Only vehicles in the specifications collection can be reviewed.
 
-        ![Add New Specification View](img/add-review.png)
+        ![Add New Specification View](img/add-review.PNG)
         Create Review view.
 
 * Create Manufacturer: <br>
     * This view is used to allow the user to define a new manufacturer to add to the manufacturer collection. The manufacturer name is required. The user must be signed in to access this page.
 
-        ![Add New Specification View](img/add-manufacturer.png)
+        ![Add New Specification View](img/add-manufacturer.PNG)
         Create Manufacturer view.
 
 #### Views Used For Updating An Entity
@@ -113,19 +113,19 @@ There are a number of views used within this application, all of which have a sp
 *  Update Specification: <br>
     * This view is used to allow the user to update a particular vehicle specification.
 
-        ![Update Specification View](img/update-vehicle.png)
+        ![Update Specification View](img/update-vehicle.PNG)
         Update Specification view, for the Audi S5.
 
 *  Update Manufacturer: <br>
     * This view is used to allow the user to update a particular manufacturer.
 
-        ![Update Manufacturer View](img/update-manufacturer.png)
+        ![Update Manufacturer View](img/update-manufacturer.PNG)
         Update Manufacturer view, for Jaguar.
 
 *  Update Review: <br>
     * This view is used to allow the user to update a particular review.
 
-        ![Update Review View](img/update-review.png)
+        ![Update Review View](img/update-review.PNG)
         Update Review view, for a Audi S5 review.
 
 #### User-related Views
@@ -133,19 +133,19 @@ There are a number of views used within this application, all of which have a sp
 * Saved Specifications: <br>
     * This view is used to allow the user to view their saved vehicles. Each entry has a delete button, allowing he user to remove a vehicle from their saved list.
 
-        ![Saved Specifications View](img/saved-vehicles.png)
+        ![Saved Specifications View](img/saved-vehicles.PNG)
         Saved Specifications view.
 
 * Login: <br>
     * This view is used to allow the user to login to the website. If there is no matching user, an error message will be displayed.
 
-        ![Login View](img/login.png)
+        ![Login View](img/login.PNG)
         Login view.
 
 * Create User: <br>
     * This view is used to allow the user to sign up to the website. If an account with the submitted email exists already, a message alerting the user of this will be displayed.
 
-        ![Create User View](img/register.png)
+        ![Create User View](img/register.PNG)
         Create User view.
 
 ### System Diagram
@@ -153,14 +153,14 @@ There are a number of views used within this application, all of which have a sp
 ##### Simple Component Diagram
 
 Here is a simple component diagram, showcasing the connections between the web server, database server, and the client.
-![Simple Component Diagram](img/simple-system-component-diagram.png)
+![Simple Component Diagram](img/simple-system-component-diagram.PNG)
 
 ## Key Design Decisions
 
 ### Database Design
 
 Here is an Entity Relationship Diagram, demonstrating the database entities, and their relationships:
-![ERD](img/ERD.png)
+![ERD](img/ERD.PNG)
 
 #### Each entity in the Specification collection has many properties:
 
