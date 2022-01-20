@@ -126,12 +126,12 @@ There are a number of views used within this application, all of which have a sp
     * This view is used to allow the user to update a particular review.
 
         ![Update Review View](img/update-review.PNG)
-        Update Review view, for a Audi S5 review.
+        Update Review view, for an Audi S5 review.
 
 #### User-related Views
 
 * Saved Specifications: <br>
-    * This view is used to allow the user to view their saved vehicles. Each entry has a delete button, allowing he user to remove a vehicle from their saved list.
+    * This view is used to allow the user to view their saved vehicles. Each entry has a delete button, allowing the user to remove a vehicle from their saved list.
 
         ![Saved Specifications View](img/saved-vehicles.PNG)
         Saved Specifications view.
@@ -229,8 +229,8 @@ The aim of this solution was to solve the question 'How can the method of resear
 There are, however, a few things I think could be improved or added, to increase the attractiveness of the solution:
 
 * A fully optimised UI for mobile/tablet users. 
-* Pagination is missing from the solution. Once the collections increase in size, it would be incredibly inefficient to load every single entity on a single page.
+* Pagination is missing from the solution. Once the collections increase in size, it would be incredibly inefficient to load every single entry of a collection on a single page.
 * The way in which to add select a vehicle to review must edited once the vehicle collection increases in size. A dropdown to filter by manufacturer, and then filter by model would be a significant improvement to the user experience.
-* Since users have CRUD capabilities, a database backup should be enforced at specific intervals (e.g., once a day) to ensure data is saved incase the database is attacked (e.g., a user deleting all vehicles).
+* Since users have CRUD capabilities, a database backup should be enforced at specific intervals (e.g., once a day) to ensure data is saved incase the database is attacked (e.g., a user deleting all vehicles).<br>
 As a direct result of this module, I have become familiar with MongoDB and the key process involved when designing and implementing a database and associated web application. Many of these key processes can be used elsewhere on other software projects, and I plan to enhance my methodology at work using them. 
 
