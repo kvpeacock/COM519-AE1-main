@@ -15,6 +15,19 @@ Users will be able to upload review links for any vehicle listed within the data
 
 The ability to view reviews, look up a variety of manufacturers, and search/compare vehicles within a single website, makes my solution truly unique. The fact that users are entrusted with CRUD capabilities is also a distinctive part of this solution, the sole website within this category to do so.
 
+<b> Requirements </b>
+
+The solution must:
+
+* Allow users to create, read, update, and delete vehicle entries in a vehicle collection.
+* Allow users to create, read, update, and delete manufacturer entries in a manufacturer collection.
+* Allow users to create, read, update, and delete vehicle review entries in a review collection.
+* Allow users to register and login to the website.
+* Allow users to seach for specific vehicles.
+* Allow signed-in users to seach for specific vehicles, and save them to their favourites.
+* Allow signed-in users to view their favourites.
+* Be deployed using a serverless infrastructure.
+
 ## System Overview
 
 ### Datastores
@@ -211,7 +224,7 @@ Since the solution utilises a serverless deployment, expanding data storage or i
 
 ## Conclusion
 
-The aim of this solution was to solve the question 'How can the method of researching and evaluating potential vehicle purchases be improved?'. The solution provides users with the means to research and compare specific vehicles, look up reviews, and learn the basic details of vehicle manufacturers. Therefore, the application provides a strong solution to the original question. Advanced MongoDB strategies have been used, such as embedded objects, pushing/pulling, and creating aggregates. The UI is clean and unobstructive, and the serverless infrastructure allows for incredible scalability. 
+The aim of this solution was to solve the question 'How can the method of researching and evaluating potential vehicle purchases be improved?'. The solution provides users with the means to research and compare specific vehicles, look up reviews, and learn the basic details of vehicle manufacturers.It has met all the requirments, and therefore the application provides a strong solution to the original question. Advanced MongoDB strategies have been used, such as embedded objects, pushing/pulling, and creating aggregates. The UI is clean and unobstructive, and the serverless infrastructure allows for incredible scalability. 
 
 There are, however, a few things I think could be improved or added, to increase the attractiveness of the solution:
 
