@@ -26,7 +26,7 @@ The live application is hosted [here](https://serene-tor-99412.herokuapp.com/spe
 * Open a terminal in the main folder directory. Run:
     * <code> npm install </code>
     * <code> npm run seed </code> for development, or <code>npm run seedProduction</code> for production.
-    * <code> npm run dev </code>
+    * <code> npm run dev </code> to access dev datatabase, or <code> npm run production </code> to access production database.
 * The application will open at [localhost:80](http://localhost:80).
 
 Documentation is availabe [here](documentation/report.md).
