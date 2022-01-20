@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
+    "production": "cross-env NODE_ENV=production nodemon app.js",
     "start": "node app.js",
     "seedProduction": "cross-env NODE_ENV=production node seeder.js",
     "seed": "node seeder.js"

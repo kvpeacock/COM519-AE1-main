@@ -16,9 +16,9 @@ const User = require("./models/User");
 const app = express();
 app.set("view engine", "ejs");
 
-const { PORT, MONGODB_URI } = process.env;
 mongoose.set('runValidators', true);
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+const { PORT, MONGODB_URI, MONGODB__PRODUCTION_URI } = process.env;
+mongoose.connect(process.env.NODE_ENV === "production" ? MONGODB__PRODUCTION_URI : MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on("error", (err) => {
   console.error(err);
